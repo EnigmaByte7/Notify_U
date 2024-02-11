@@ -1,0 +1,234 @@
+body {
+    background-image:url(../Images/BodyBG11.jpg);
+    background-repeat:repeat-x;
+    margin:0;
+    }
+    
+    img {
+    border:0;
+    }
+    
+    .LinkBG {
+    background-image:url(../Images/MenuBar.gif);
+    background-repeat:repeat-x;
+    display:block;
+    height:36px;
+    background-position:top;
+    }
+    
+    .LinkTop {
+    text-align:center;
+    display:block;
+    width:100%;
+    height:36px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    line-height:36px;
+    color:#333;
+    font-size:11px;
+    text-decoration:none;
+    font-weight:700;
+    }
+    
+    .LinkTop:hover {
+    color:#4B4B4B;
+    text-decoration:none;
+    background-image:url(../Images/OverBarMenu.png);
+    background-repeat:no-repeat;
+    background-position:center top;
+    }
+    
+    .StageBG {
+    background-image:url(../Images/StageBG.png);
+    background-repeat:repeat-y;
+    background-position:top;
+    }
+    
+    .BottomText {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    line-height:30px;
+    color:#E1E1E1;
+    background-color:#355D78;
+    display:block;
+    height:40px;
+    padding-right:10pt;
+    padding-left:10pt;
+    border-top-width:2px;
+    border-top-style:solid;
+    border-top-color:#2C4E65;
+    }
+    
+    .SubMenu {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:11px;
+    color:#868686;
+    text-decoration:none;
+    display:block;
+    height:28px;
+    line-height:28px;
+    background-image:url(../Images/InnerIcon.gif);
+    background-repeat:no-repeat;
+    padding-left:15pt;
+    background-position:left center;
+    letter-spacing:0.5px;
+    }
+    
+    .MainMenu {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:11px;
+    color:#495D7F;
+    text-decoration:none;
+    display:block;
+    height:30px;
+    line-height:30px;
+    background-image:url(../Images/MainIcon.gif);
+    background-repeat:no-repeat;
+    padding-left:18pt;
+    background-position:left center;
+    letter-spacing:0.5px;
+    font-weight:700;
+    }
+    
+    .PanelHeading {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    line-height:35px;
+    font-weight:700;
+    color:#FFF;
+    background-image:url(../Images/PanelHeadBG.gif);
+    background-repeat:repeat-x;
+    background-position:top;
+    padding-left:7pt;
+    }
+    
+    .Content {
+    font-family:Mangal;
+    font-size:13px;
+    line-height:20px;
+    color:#000;
+    text-decoration:none;
+    padding-right:10pt;
+    padding-left:10pt;
+    text-align:justify;
+    }
+    
+    .Content table td {
+    padding-right:5pt;
+    padding-left:5pt;
+    }
+    
+    .MainHeading {
+    font-weight:700;
+    color:#000;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    padding-left:10pt;
+    }
+    
+    .ContentHeading {
+    font-weight:700;
+    color:#600;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    }
+    
+    .ContentEng {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    line-height:20px;
+    color:#000;
+    text-decoration:none;
+    padding-right:10pt;
+    padding-left:10pt;
+    text-align:justify;
+    }
+    
+    .box {
+    border-right-width:1px;
+    border-bottom-width:1px;
+    border-left-width:1px;
+    border-right-style:solid;
+    border-bottom-style:solid;
+    border-left-style:solid;
+    border-right-color:#B3B3B4;
+    border-bottom-color:#B3B3B4;
+    border-left-color:#B3B3B4;
+    }
+    
+    .latestBG {
+    background-image:url(../Images/LatestNewsBG.gif);
+    background-repeat:repeat-x;
+    background-position:top;
+    height:40px;
+    padding-left:8pt;
+    }
+    
+    .PanelBox {
+    border:1px solid #DFDFDF;
+    background-image:url(../Images/TextBoxBottom.gif);
+    background-repeat:repeat-x;
+    background-position:left bottom;
+    font-size:8.5pt;
+    color:InfoText;
+     line-height:20px;
+    }
+    
+    .PanelHeadBG {
+    background-image:url(../Images/InnerPanelHead.gif);
+    background-repeat:repeat-x;
+    background-position:left bottom;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    font-weight:700;
+    color:#FFF;
+    padding-left:7pt;
+    height:32px;
+    line-height:32px;
+    }
+    
+    .dot {
+    background-image:url(../Images/DotImg.gif);
+    background-repeat:repeat-x;
+    background-position:bottom;
+    }
+    
+    .menuBG {
+    background-color:#DEE3E7;
+    border-right:1pt solid #C8CCD0;
+    }
+    
+    .btn {
+    color:#050;
+    font:bold 84% 'trebuchet ms',helvetica,sans-serif;
+    background-color:#fed;
+    border:1px solid;
+    border-color:#696 #363 #363 #696;
+    }
+    
+    .btn:hover {
+    border-color:#c63 #930 #930 #c63;
+    }
+    
+    .validation {
+    font-family:Tahoma;
+    font-size:10px;
+    color:Red;
+    }
+    
+    .legend1 {
+    color:Red;
+    font-size:10px;
+    font-style:normal;
+    }
+    
+    .UploadFile {
+    color:#050;
+    font:bold 84% 'Verdana',helvetica,sans-serif;
+    background-color:#fed;
+    border:1px solid;
+    border-color:#696 #363 #363 #696;
+    }
+    
+    .SubMenu:hover,.MainMenu:hover {
+    color:#000;
+    }
