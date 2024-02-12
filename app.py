@@ -8,10 +8,12 @@ app = Flask(__name__)
 """
 con = sqlite3.connect('database.db')
 cursor = con.cursor()
-table = '''create table IF NOT EXISTS users(name TEXT NOT NULL, contact INTEGER NOT NULL)'''
-cursor.execute(table)
+table1 = '''create table IF NOT EXISTS users(name TEXT NOT NULL, contact INTEGER NOT NULL)'''
+cursor.execute(table1)
 con.commit()
-
+table2 = '''create table IF NOT EXISTS notices(notice_date DATE, notice TEXT)'''
+cursor.execute(table2)
+con.commit()
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -29,11 +31,25 @@ def register():
         return "Success"
     else:
         return render_template('index.html')
-
-        """
+  """
 dt = datetime.datetime.now()
 date = dt.strftime("%d/%m/%Y")
 result=[]
+
+def notifier(notices):
+     pass
+
+def updater(result,date):
+    notices = []
+    con = sqlite3.connect('database.db')
+    cursor = con.cursor()
+    for i in result:
+         data = cursor.execute("select notice from notices where date=(?) and notice=(?)",(date,i))
+         if data == []:
+              notices.append(i)
+              cursor.execute("insert into notices values(?,?)",(date,i))
+    notifier(notices)
+
 def extractor(date):
         with open("jec.html") as page:
             soup = BeautifulSoup(page, "html.parser")
@@ -46,5 +62,5 @@ def extractor(date):
                         print(main[2].get_text(strip=True))
                 else:
                     break
-extractor(date)
-print(result)
+        if result != []:
+            updater(result)
