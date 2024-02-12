@@ -3,9 +3,10 @@ import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import datetime
+from twilio.rest import Client
 
 app = Flask(__name__)
-"""
+
 con = sqlite3.connect('database.db')
 cursor = con.cursor()
 table1 = '''create table IF NOT EXISTS users(name TEXT NOT NULL, contact INTEGER NOT NULL)'''
@@ -31,20 +32,40 @@ def register():
         return "Success"
     else:
         return render_template('index.html')
-  """
+
 dt = datetime.datetime.now()
 date = dt.strftime("%d/%m/%Y")
 result=[]
 
 def notifier(notices):
-     pass
+        account_sid = 'AC79ae7d52de24a6b1ec3b56480930333e'
+        auth_token = 'ce403f978f6aa8d94fbb8fb82368188c'
+        client = Client(account_sid, auth_token)
+
+        con = sqlite3.connect('database.db')
+        cursor = con.cursor()
+        cursor.execute("select * from users")
+        data = cursor.fetchall()
+        for j in notices:
+            for i in data:
+                name = i[0]
+                phone = i[1]
+                message = client.messages.create(
+                    from_ ='+18166563178',
+                    body=f"Hey ! {name} , {j} is released ! Check out the official website.",
+                    to=phone
+                )
+                print("Success")
+
+
 
 def updater(result,date):
     notices = []
     con = sqlite3.connect('database.db')
     cursor = con.cursor()
     for i in result:
-         data = cursor.execute("select notice from notices where date=(?) and notice=(?)",(date,i))
+         cursor.execute("select notice from notices where date=(?) and notice=(?)",(date,i))
+         data = cursor.fetchall()
          if data == []:
               notices.append(i)
               cursor.execute("insert into notices values(?,?)",(date,i))
@@ -63,4 +84,5 @@ def extractor(date):
                 else:
                     break
         if result != []:
-            updater(result)
+            updater(result,date)
+print(date)
