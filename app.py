@@ -4,6 +4,10 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 from twilio.rest import Client
+import schedule
+import time
+
+
 
 app = Flask(__name__)
 
@@ -37,6 +41,9 @@ dt = datetime.datetime.now()
 date = dt.strftime("%d/%m/%Y")
 result=[]
 
+def extractor_job():
+    extractor(date)
+
 def notifier(notices):
         account_sid = 'AC79ae7d52de24a6b1ec3b56480930333e'
         auth_token = 'ce403f978f6aa8d94fbb8fb82368188c'
@@ -52,8 +59,8 @@ def notifier(notices):
                 phone = i[1]
                 message = client.messages.create(
                     from_ ='+18166563178',
-                    body=f"Hey ! {name} , {j} is released ! Check out the official website.",
-                    to=phone
+                    body=f"Hey ! {name} ,Notice {j} is released ! Check out the official website https://www.jecjabalpur.ac.in/index.aspx",
+                    to='+91'+ str(phone)
                 )
                 print("Success")
 
@@ -64,7 +71,7 @@ def updater(result,date):
     con = sqlite3.connect('database.db')
     cursor = con.cursor()
     for i in result:
-         cursor.execute("select notice from notices where date=(?) and notice=(?)",(date,i))
+         cursor.execute("select notice from notices where notice_date=(?) and notice=(?)",(date,i))
          data = cursor.fetchall()
          if data == []:
               notices.append(i)
@@ -72,17 +79,24 @@ def updater(result,date):
     notifier(notices)
 
 def extractor(date):
-        with open("jec.html") as page:
-            soup = BeautifulSoup(page, "html.parser")
-            obj = soup.find(id = 'ctl00_ContentPlaceHolder1_WC_MoreUtility1_GVView')
-            tables = obj.find_all('table')
-            for i in range(1, len(tables)):
-                main = tables[i].find_all('td')
-                if main[1].get_text(strip=True) == date:
-                        result.append(main[2].get_text(strip=True))
-                        print(main[2].get_text(strip=True))
-                else:
-                    break
-        if result != []:
-            updater(result,date)
-print(date)
+            with open('jec.html') as page:
+                soup = BeautifulSoup(page, "html.parser")
+                obj = soup.find(id = 'ctl00_ContentPlaceHolder1_WC_MoreUtility1_GVView')
+                tables = obj.find_all('table')
+                for i in range(1, len(tables)):
+                    main = tables[i].find_all('td')
+                    if main[1].get_text(strip=True) == date:
+                            result.append(main[2].get_text(strip=True))
+                            print(main[2].get_text(strip=True))
+                    else:
+                        break
+                if result != []:
+                    updater(result,date)
+
+schedule.every(1).minutes.do(extractor_job)
+
+while True:
+    schedule.run_pending()
+    time.sleep(10) 
+
+
