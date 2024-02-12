@@ -45,6 +45,7 @@ def extractor_job():
     extractor(date)
 
 def notifier(notices):
+        
         account_sid = 'AC79ae7d52de24a6b1ec3b56480930333e'
         auth_token = 'ce403f978f6aa8d94fbb8fb82368188c'
         client = Client(account_sid, auth_token)
@@ -63,6 +64,7 @@ def notifier(notices):
                     to='+91'+ str(phone)
                 )
                 print("Success")
+            
 
 
 
@@ -72,10 +74,11 @@ def updater(result,date):
     cursor = con.cursor()
     for i in result:
          cursor.execute("select notice from notices where notice_date=(?) and notice=(?)",(date,i))
-         data = cursor.fetchall()
+         data = cursor.fetchall()      
          if data == []:
               notices.append(i)
               cursor.execute("insert into notices values(?,?)",(date,i))
+              con.commit()
     notifier(notices)
 
 def extractor(date):
